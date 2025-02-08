@@ -68,46 +68,29 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - unity_Lightmaps:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_LightmapsInd:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - unity_ShadowMasks:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlphaCutoff: 0.5
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EnableGrunge: 0
-    - _EnvironmentReflections: 1
     - _GhiblyIntensity: 0
-    - _Ghibly_Exponent: 0.46
-    - _Ghibly_Softness: 0.293
-    - _Ghibly_Steps: 10
+    - _Ghibly_Exponent: 0.2
+    - _Ghibly_Softness: 0.149
+    - _Ghibly_Steps: 7
     - _GiblyStylize: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _GrungeChannel: 0
-    - _GrungeScale: 27.6
+    - _GrungeScale: 43.3
     - _Grunge_Max: 0.79
     - _Grunge_Min: 0.43
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _QueueControl: 0
-    - _QueueOffset: 0
-    - _ReceiveShadows: 1
     - _SmoothnessTextureChannel: 0
     - _Softness: 0.73
     - _SpecularHighlights: 1
@@ -118,7 +101,7 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Grunge_Tint: {r: 1, g: 1, b: 1, a: 0.44705883}
+    - _Grunge_Tint: {r: 1, g: 1, b: 1, a: 0.5686275}
     - _LightTint: {r: 1, g: 1, b: 1, a: 1}
     - _ShadowTint: {r: 0.2966803, g: 0.4164361, b: 0.5566038, a: 1}
   m_BuildTextureStacks: []
