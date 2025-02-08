@@ -116,7 +116,7 @@ namespace VHierarchy
                 var showDefaultIcon = !showCustomIcon && (isRowBeingRenamed || (!VHierarchyMenu.minimalModeEnabled || (PrefabUtility.IsAddedGameObjectOverride(go) && PrefabUtility.IsPartOfPrefabInstance(go))));
 
                 var makeTriangleBrighter = showBackgroundColor && goData.colorIndex > VHierarchyPalette.greyColorsCount && isDarkTheme;
-                var makeNameBrighter = showBackgroundColor && goData.colorIndex > VHierarchyPalette.greyColorsCount && isDarkTheme && go.activeInHierarchy;
+                var makeNameBrighter = showBackgroundColor && goData.colorIndex > VHierarchyPalette.greyColorsCount && isDarkTheme;
 
                 Color defaultBackground;
 
@@ -208,8 +208,8 @@ namespace VHierarchy
 
 
 
-                    leftGradientRect.Draw(color.SetAlpha((flatness - .1f) / .9f));
-                    leftGradientRect.DrawCurtainLeft(color);
+                    leftGradientRect.AddWidth(1).Draw(color.SetAlpha((flatness - .1f) / .9f));
+                    leftGradientRect.AddWidth(1).DrawCurtainLeft(color);
 
                     flatColorRect.AddWidth(1).Draw(color);
 
@@ -253,7 +253,7 @@ namespace VHierarchy
                         else
                             nameRect = nameRect.Move(-1, -1.5f);
 
-                    if (makeNameBrighter)
+                    if (makeNameBrighter && go.activeInHierarchy)
                         nameRect = nameRect.MoveX(-2).MoveY(-.5f);
 
 
@@ -262,13 +262,13 @@ namespace VHierarchy
                         (go.activeInHierarchy ? "PR PrefabLabel" : "PR DisabledPrefabLabel") :
                         (go.activeInHierarchy ? "TV Line" : "PR DisabledLabel");
 
-                    if (makeNameBrighter)
+                    if (makeNameBrighter && go.activeInHierarchy)
                         styleName = "WhiteLabel";
 
 
 
                     if (makeNameBrighter)
-                        SetGUIColor(Greyscale(isRowSelected ? 1 : .9f));
+                        SetGUIColor(Greyscale(!go.activeInHierarchy ? 1.4f : isRowSelected ? 1 : .9f));
 
                     GUI.skin.GetStyle(styleName).Draw(nameRect, go.name, false, false, isRowSelected, hierarchyWindow == EditorWindow.focusedWindow);
 
@@ -393,6 +393,7 @@ namespace VHierarchy
                 {
                     if (!VHierarchyMenu.zebraStripingEnabled) return;
                     if (isRowSelected) return;
+                    if (goData?.colorIndex == 1) return;
 
                     var contrast = isDarkTheme ? .033f : .05f;
 
@@ -533,6 +534,7 @@ namespace VHierarchy
             {
                 if (!VHierarchyMenu.activationToggleEnabled) return;
                 if (!isRowHovered) return;
+                if (curEvent.holdingAlt) return;
 
                 var toggleRect = fullRowRect.SetWidth(16).MoveX(1);
 
@@ -739,8 +741,9 @@ namespace VHierarchy
 
         static void RowGUI(int instanceId, Rect rowRect)
         {
-            // GUIStopwatch.OnGUIBeginning(iterations: 350); // toremove
-            // EditorApplication.RepaintHierarchyWindow();
+            if (EditorWindow.focusedWindow is EditorWindow focusedWindow)
+                if (focusedWindow.GetType() == t_SceneHierarchyWindow && focusedWindow != hierarchyWindow)
+                    _hierarchyWindow = focusedWindow; // fixes wrong isTreeFocused value when there are multiple hierarchies
 
 
             if (curEvent.isLayout)
@@ -810,7 +813,6 @@ namespace VHierarchy
             void toggleActive()
             {
                 if (!hoveredGo) return;
-                if (curEvent.isNull) return;    // tocheck 
                 if (curEvent.holdingAnyModifierKey) return;
                 if (!curEvent.isKeyDown || curEvent.keyCode != KeyCode.A) return;
                 if (Tools.viewTool == ViewTool.FPS) return;
@@ -1099,8 +1101,8 @@ namespace VHierarchy
 
 
                     var globalIds = sceneData.goDatas_byGlobalId.Keys.ToList();
-                    var instanceIds = globalIds.GetObjectInstanceIds();
-
+                    var instanceIds = globalIds.Select(r => Application.isPlaying ? r.UnpackForPrefab() : r)
+                                               .GetObjectInstanceIds();
                     void clearSceneGuids()
                     {
                         foreach (var instanceId in sceneIdMap.globalIds_byInstanceId.Keys)
@@ -1191,26 +1193,40 @@ namespace VHierarchy
 
 
                 var prefabGuid = prefabStage.assetPath.ToGuid();
-                var sourceGlobalId = new GlobalID(go.GetGlobalID().ToString().Replace("-2-", "-1-").Replace("00000000000000000000000000000000", prefabGuid));
 
+                GlobalID sourceGlobalId;
 
-                void fixGlobalId_2023_2()
+                void calcGlobalId()
                 {
 
+                    var rawGlobalId = go.GetGlobalID();
+
+
 #if UNITY_2023_2_OR_NEWER
+                    
+                    var so = new SerializedObject(go);
 
-                var so = new SerializedObject(go);
+                    so.SetPropertyValue("inspectorMode", UnityEditor.InspectorMode.Debug);
 
-                so.SetPropertyValue("inspectorMode", UnityEditor.InspectorMode.Debug);
+                    var rawFileId = so.FindProperty("m_LocalIdentfierInFile").longValue;
 
-                var fileId = so.FindProperty("m_LocalIdentfierInFile").longValue;
+                    if (rawFileId == 0) // happens for prefab variants in unity 6
+                        rawFileId = (long)t_Unsupported.InvokeMethod<ulong>("GetOrGenerateFileIDHint", go);
 
+#else
 
-                sourceGlobalId = new GlobalID($"GlobalObjectId_V1-1-{prefabGuid}-{fileId}-0");
-
-
+                    var rawFileId = rawGlobalId.fileId;
 #endif
+
+                    // fixes fileId for prefab variants
+                    // also works for getting prefab's unpacked fileId
+                    var fileId = ((long)rawFileId ^ (long)rawGlobalId.globalObjectId.targetPrefabId) & 0x7fffffffffffffff;
+
+
+                    sourceGlobalId = new GlobalID($"GlobalObjectId_V1-1-{prefabGuid}-{fileId}-0");
+
                 }
+
 
                 void getSceneDataFromScriptableObject()
                 {
@@ -1246,7 +1262,7 @@ namespace VHierarchy
                 }
 
 
-                fixGlobalId_2023_2();
+                calcGlobalId();
 
                 getSceneDataFromScriptableObject();
                 createSceneData();
@@ -1255,38 +1271,60 @@ namespace VHierarchy
                 createGoData();
 
             }
-            void prefabInstance()
+            void prefabInstance_editMode()
             {
                 if (!PrefabUtility.IsPartOfPrefabInstance(go)) return;
                 if (goData != null) return;
 
+                void tryGetForSourceGo(GameObject sourceGo)
+                {
+                    var sourceGoGlobalId = sourceGo.GetGlobalID();
+                    var sourcePrefabGuid = sourceGoGlobalId.guid;
 
-                var globalId = PrefabUtility.GetCorrespondingObjectFromOriginalSource(go).GetGlobalID();
+                    cache.prefabInstanceGlobalIds_byInstanceIds[go.GetInstanceID()] = sourceGoGlobalId;
+
+
+                    data.sceneDatas_byGuid.TryGetValue(sourcePrefabGuid, out sceneData);
+
+                    sceneData?.goDatas_byGlobalId.TryGetValue(sourceGoGlobalId, out goData);
+
+
+                    if (goData == null)
+                        try
+                        {
+                            if (PrefabUtility.GetCorrespondingObjectFromSource(sourceGo) is GameObject previousSourceGo)
+                                tryGetForSourceGo(previousSourceGo);
+
+                            // wrapped in try-catch because GetCorrespondingObjectFromSource throws exceptions on broken prefabs
+                        }
+                        catch { }
+
+                }
+
+                tryGetForSourceGo(PrefabUtility.GetCorrespondingObjectFromSource(go));
+
+            }
+            void prefabInstance_playmode()
+            {
+                if (!Application.isPlaying) return;
+                if (goData != null) return;
+
+
+                if (!cache.prefabInstanceGlobalIds_byInstanceIds.TryGetValue(go.GetInstanceID(), out var globalId)) return;
+
                 var prefabGuid = globalId.guid;
 
 
-                void getSceneDataFromScriptableObject()
-                {
-                    data.sceneDatas_byGuid.TryGetValue(prefabGuid, out sceneData);
-                }
+                data.sceneDatas_byGuid.TryGetValue(prefabGuid, out sceneData);
 
-                void getGoData()
-                {
-                    if (sceneData == null) return;
-
-                    sceneData.goDatas_byGlobalId.TryGetValue(globalId, out goData);
-                }
-
-
-                getSceneDataFromScriptableObject();
-
-                getGoData();
+                sceneData?.goDatas_byGlobalId.TryGetValue(globalId, out goData);
 
             }
 
             sceneObject();
             prefabObject();
-            prefabInstance();
+            prefabInstance_editMode();
+            prefabInstance_playmode();
 
             if (goData != null)
                 goData.sceneData = sceneData;
@@ -1335,6 +1373,10 @@ namespace VHierarchy
 
             return iconNameOrPath;
 
+        }
+        static string GetIconName_forVInspector(GameObject gameObject)
+        {
+            return GetIconName_forVFavorites(gameObject);
         }
 
 
@@ -1777,19 +1819,33 @@ namespace VHierarchy
 
 
 
-        static EditorWindow hierarchyWindow => _hierarchyWindow != null ? _hierarchyWindow : _hierarchyWindow = Resources.FindObjectsOfTypeAll(t_SceneHierarchyWindow).FirstOrDefault() as EditorWindow;
+        static EditorWindow hierarchyWindow
+        {
+            get
+            {
+                if (_hierarchyWindow != null && _hierarchyWindow.GetType() != t_SceneHierarchyWindow) // happens on 2022.3.22f1 with enter playmode options on
+                    _hierarchyWindow = null;
+
+                if (_hierarchyWindow == null)
+                    _hierarchyWindow = Resources.FindObjectsOfTypeAll(t_SceneHierarchyWindow).FirstOrDefault() as EditorWindow;
+
+                return _hierarchyWindow;
+
+            }
+        }
         static EditorWindow _hierarchyWindow;
 
         static object treeViewController => hierarchyWindow?.GetFieldValue("m_SceneHierarchy").GetFieldValue("m_TreeView"); // recreated on prefab mode enter/exit
 
 
         static Type t_SceneHierarchyWindow = typeof(Editor).Assembly.GetType("UnityEditor.SceneHierarchyWindow");
+        static Type t_Unsupported = typeof(Editor).Assembly.GetType("UnityEditor.Unsupported");
 
 
 
 
 
-        public const string version = "2.0.14";
+        public const string version = "2.0.18";
 
     }
 }

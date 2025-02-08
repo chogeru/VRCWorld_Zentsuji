@@ -27,6 +27,9 @@ namespace VHierarchy
         // used as cache for converting GlobalID to InstanceID and as a way to find GameObjectData for prefabs in playmode (when prefabs produce invalid GlobalIDs)
         public SerializableDictionary<string, SceneIdMap> sceneIdMaps_bySceneGuid = new SerializableDictionary<string, SceneIdMap>();
 
+        // used for fetching icons set inside prefab instances in playmode (when prefabs produce invalid GlobalIDs)
+        public SerializableDictionary<int, GlobalID> prefabInstanceGlobalIds_byInstanceIds = new SerializableDictionary<int, GlobalID>();
+
 
         [System.Serializable]
         public class SceneIdMap

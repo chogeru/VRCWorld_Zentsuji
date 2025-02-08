@@ -46,7 +46,8 @@ namespace VHierarchy
 
                 void startDragging()
                 {
-                    if (isResizing) return;
+                    if (isResizingVertically) return;
+                    if (isResizingHorizontally) return;
                     if (isDragged) return;
                     if (!curEvent.isMouseDrag) return;
                     if (!headerRect.IsHovered()) return;
@@ -244,20 +245,41 @@ namespace VHierarchy
             }
             void body()
             {
-                BeginIndent(16);
+                EditorGUIUtility.labelWidth = (this.position.width * .4f).Max(120);
+
+
+                scrollPosition = EditorGUILayout.BeginScrollView(Vector2.up * scrollPosition).y;
+                BeginIndent(17);
+
 
                 editor?.OnInspectorGUI();
 
-                EndIndent(0);
+                updateHeight();
+
+
+                EndIndent(1);
+                EditorGUILayout.EndScrollView();
+
+
+                EditorGUIUtility.labelWidth = 0;
 
             }
 
             void updateHeight()
             {
-                var r = ExpandWidthLabelRect();
 
-                if (curEvent.isRepaint)
-                    position = position.SetHeight(lastRect.y);
+                ExpandWidthLabelRect(height: -5);
+
+                if (!curEvent.isRepaint) return;
+                if (isResizingVertically) return;
+
+
+                targetHeight = lastRect.y + 30;
+
+                position = position.SetHeight(targetHeight.Min(maxHeight));
+
+
+                prevHeight = position.height;
 
             }
             void updatePosition()
@@ -315,43 +337,46 @@ namespace VHierarchy
 
             void horizontalResize()
             {
-                var resizeArea = this.position.SetPos(0, 0).SetWidthFromRight(5).AddHeightFromBottom(-20);
+                var showingScrollbar = targetHeight > maxHeight;
+
+                var resizeArea = this.position.SetPos(0, 0).SetWidthFromRight(showingScrollbar ? 3 : 5).AddHeightFromBottom(-20);
 
                 void startResize()
                 {
                     if (isDragged) return;
-                    if (isResizing) return;
+                    if (isResizingHorizontally) return;
                     if (!curEvent.isMouseDown && !curEvent.isMouseDrag) return;
                     if (!resizeArea.IsHovered()) return;
 
-                    isResizing = true;
+                    isResizingHorizontally = true;
 
-                    resizeStartMousePos = EditorGUIUtility.GUIToScreenPoint(curEvent.mousePosition);
+                    resizeStartMousePos = curEvent.mousePosition_screenSpace;
                     resizeStartWindowSize = this.position.size;
 
                 }
                 void updateResize()
                 {
-                    if (!isResizing) return;
+                    if (!isResizingHorizontally) return;
 
 
-                    var resizedWidth = resizeStartWindowSize.x + EditorGUIUtility.GUIToScreenPoint(curEvent.mousePosition).x - resizeStartMousePos.x;
+                    var resizedWidth = resizeStartWindowSize.x + curEvent.mousePosition_screenSpace.x - resizeStartMousePos.x;
 
-                    var width = resizedWidth.Max(minWidth);
+                    var width = resizedWidth.Max(300);
 
                     if (!curEvent.isRepaint)
                         position = position.SetWidth(width);
 
 
                     EditorGUIUtility.hotControl = EditorGUIUtility.GetControlID(FocusType.Passive);
+                    // GUI.focused
 
                 }
                 void stopResize()
                 {
-                    if (!isResizing) return;
+                    if (!isResizingHorizontally) return;
                     if (!curEvent.isMouseUp) return;
 
-                    isResizing = false;
+                    isResizingHorizontally = false;
 
                     EditorGUIUtility.hotControl = 0;
 
@@ -365,10 +390,69 @@ namespace VHierarchy
                 stopResize();
 
             }
+            void verticalResize()
+            {
+                var resizeArea = this.position.SetPos(0, 0).SetHeightFromBottom(5);
+
+                void startResize()
+                {
+                    if (isDragged) return;
+                    if (isResizingVertically) return;
+                    if (!curEvent.isMouseDown && !curEvent.isMouseDrag) return;
+                    if (!resizeArea.IsHovered()) return;
+
+                    isResizingVertically = true;
+
+                    resizeStartMousePos = curEvent.mousePosition_screenSpace;
+                    resizeStartWindowSize = this.position.size;
+
+                }
+                void updateResize()
+                {
+                    if (!isResizingVertically) return;
+
+
+                    var resizedHeight = resizeStartWindowSize.y + curEvent.mousePosition_screenSpace.y - resizeStartMousePos.y;
+
+                    var height = resizedHeight.Min(targetHeight).Max(50);
+
+                    if (!curEvent.isRepaint)
+                        position = position.SetHeight(height);
+
+                    maxHeight = height;
+
+
+                    EditorGUIUtility.hotControl = EditorGUIUtility.GetControlID(FocusType.Passive);
+                    // GUI.focused
+
+                }
+                void stopResize()
+                {
+                    if (!isResizingVertically) return;
+                    if (!curEvent.isMouseUp) return;
+
+                    isResizingVertically = false;
+
+                    EditorGUIUtility.hotControl = 0;
+
+                }
+
+
+                EditorGUIUtility.AddCursorRect(resizeArea, MouseCursor.ResizeVertical);
+
+                startResize();
+                updateResize();
+                stopResize();
+
+            }
 
 
             background();
             outline();
+
+            horizontalResize();
+            verticalResize();
+
 
             header();
 
@@ -378,11 +462,8 @@ namespace VHierarchy
             Space(7);
 
 
-            updateHeight();
             updatePosition();
             closeOnEscape();
-
-            horizontalResize();
 
             if (!isPinned)
                 Repaint();
@@ -399,9 +480,16 @@ namespace VHierarchy
         Vector2 dragStartMousePos;
         Vector2 dragStartWindowPos;
 
-        bool isResizing;
-        Vector2 resizeStartMousePos;
-        Vector2 resizeStartWindowSize;
+        public bool isResizingHorizontally;
+        public bool isResizingVertically;
+        public Vector2 resizeStartMousePos;
+        public Vector2 resizeStartWindowSize;
+
+        public float scrollPosition;
+
+        public float targetHeight;
+        public float maxHeight;
+        public float prevHeight;
 
 
 
@@ -464,11 +552,15 @@ namespace VHierarchy
             floatingInstance.ShowPopup();
 
 
+            floatingInstance.maxHeight = EditorGUIUtility.GetMainWindowPosition().height * .7f;
+
+
             var savedWidth = EditorPrefs.GetFloat("vHierarchy-componentWindowWidth", minWidth);
 
             var width = savedWidth.Max(minWidth);
 
             floatingInstance.position = Rect.zero.SetPos(position).SetWidth(width).SetHeight(200);
+            floatingInstance.prevHeight = floatingInstance.position.height;
 
             floatingInstance.targetPosition = position;
 
