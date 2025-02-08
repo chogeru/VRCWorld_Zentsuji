@@ -1,0 +1,169 @@
+fileFormatVersion: 2
+guid: a34c7afdfa31d11418a1faefaa81fc73
+timeCreated: 1622810829
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: AdjustmentDial_01
+    100002: AdjustmentDial_02
+    100004: AdjustmentDial_03
+    100006: AdjustmentDial_04
+    100008: AdjustmentDial_05
+    100010: AdjustmentDial_06
+    100012: Dustpan
+    100014: GasRange
+    100016: //RootNode
+    100018: Stopper
+    100020: Valve_00
+    100022: Valve_01
+    100024: Valve_02
+    100026: Valve_03
+    100028: Valve_04
+    100030: Valve_05
+    100032: Valve_06
+    100034: Dustpan02
+    100036: GasRange02
+    100038: Stopper02
+    400000: AdjustmentDial_01
+    400002: AdjustmentDial_02
+    400004: AdjustmentDial_03
+    400006: AdjustmentDial_04
+    400008: AdjustmentDial_05
+    400010: AdjustmentDial_06
+    400012: Dustpan
+    400014: GasRange
+    400016: //RootNode
+    400018: Stopper
+    400020: Valve_00
+    400022: Valve_01
+    400024: Valve_02
+    400026: Valve_03
+    400028: Valve_04
+    400030: Valve_05
+    400032: Valve_06
+    400034: Dustpan02
+    400036: GasRange02
+    400038: Stopper02
+    2300000: AdjustmentDial_01
+    2300002: AdjustmentDial_02
+    2300004: AdjustmentDial_03
+    2300006: AdjustmentDial_04
+    2300008: AdjustmentDial_05
+    2300010: AdjustmentDial_06
+    2300012: Dustpan
+    2300014: GasRange
+    2300016: Stopper
+    2300018: Valve_00
+    2300020: Valve_01
+    2300022: Valve_02
+    2300024: Valve_03
+    2300026: Valve_04
+    2300028: Valve_05
+    2300030: Valve_06
+    2300032: Dustpan02
+    2300034: GasRange02
+    2300036: Stopper02
+    3300000: AdjustmentDial_01
+    3300002: AdjustmentDial_02
+    3300004: AdjustmentDial_03
+    3300006: AdjustmentDial_04
+    3300008: AdjustmentDial_05
+    3300010: AdjustmentDial_06
+    3300012: Dustpan
+    3300014: GasRange
+    3300016: Stopper
+    3300018: Valve_00
+    3300020: Valve_01
+    3300022: Valve_02
+    3300024: Valve_03
+    3300026: Valve_04
+    3300028: Valve_05
+    3300030: Valve_06
+    3300032: Dustpan02
+    3300034: GasRange02
+    3300036: Stopper02
+    4300000: AdjustmentDial_01
+    4300002: AdjustmentDial_02
+    4300004: AdjustmentDial_03
+    4300006: AdjustmentDial_04
+    4300008: AdjustmentDial_05
+    4300010: AdjustmentDial_06
+    4300012: Dustpan
+    4300014: GasRange
+    4300016: Stopper
+    4300018: Valve_00
+    4300020: Valve_01
+    4300022: Valve_02
+    4300024: Valve_03
+    4300026: Valve_04
+    4300028: Valve_05
+    4300030: Valve_06
+    4300032: Dustpan02
+    4300034: GasRange02
+    4300036: Stopper02
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,144 @@
+fileFormatVersion: 2
+guid: 80938dd568fc5f945916822fe7d821b7
+timeCreated: 1624962328
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Body
+    100002: //RootNode
+    100004: Lid_01
+    100006: Lid_02
+    100008: Lid_03
+    100010: Skewer_B01
+    100012: Skewer_B02
+    100014: Takoyaki_01
+    100016: Takoyaki_02
+    100018: Takoyaki_03
+    100020: Takoyaki_04
+    100022: Takoyaki_05
+    100024: Takoyaki_06
+    100026: Takoyaki_07
+    100028: Takoyaki_08
+    400000: Body
+    400002: //RootNode
+    400004: Lid_01
+    400006: Lid_02
+    400008: Lid_03
+    400010: Skewer_B01
+    400012: Skewer_B02
+    400014: Takoyaki_01
+    400016: Takoyaki_02
+    400018: Takoyaki_03
+    400020: Takoyaki_04
+    400022: Takoyaki_05
+    400024: Takoyaki_06
+    400026: Takoyaki_07
+    400028: Takoyaki_08
+    2300000: Body
+    2300002: Lid_01
+    2300004: Lid_02
+    2300006: Lid_03
+    2300008: Skewer_B01
+    2300010: Skewer_B02
+    2300012: Takoyaki_01
+    2300014: Takoyaki_02
+    2300016: Takoyaki_03
+    2300018: Takoyaki_04
+    2300020: Takoyaki_05
+    2300022: Takoyaki_06
+    2300024: Takoyaki_07
+    2300026: Takoyaki_08
+    3300000: Body
+    3300002: Lid_01
+    3300004: Lid_02
+    3300006: Lid_03
+    3300008: Skewer_B01
+    3300010: Skewer_B02
+    3300012: Takoyaki_01
+    3300014: Takoyaki_02
+    3300016: Takoyaki_03
+    3300018: Takoyaki_04
+    3300020: Takoyaki_05
+    3300022: Takoyaki_06
+    3300024: Takoyaki_07
+    3300026: Takoyaki_08
+    4300000: Body
+    4300002: Lid_01
+    4300004: Lid_02
+    4300006: Lid_03
+    4300008: Skewer_B01
+    4300010: Skewer_B02
+    4300012: Takoyaki_01
+    4300014: Takoyaki_02
+    4300016: Takoyaki_03
+    4300018: Takoyaki_04
+    4300020: Takoyaki_05
+    4300022: Takoyaki_06
+    4300024: Takoyaki_07
+    4300026: Takoyaki_08
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
