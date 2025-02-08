@@ -7,3 +7,5 @@ UserSettings
 .vsconfig
 *.csproj
 *.sln
+/VRCWorld_Zentsuji/Assets/UnityAssetsResource
+/VRCWorld_Zentsuji/Assets/OtherResources/font
