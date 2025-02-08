@@ -408,7 +408,7 @@ namespace FIMSpace.FEditor
                     //int startBytes = File.ReadAllBytes(oPath).Length;
 
                     // Applying to texture asset
-                    output.Resize((int)dimensions.x, (int)dimensions.y);
+                    output.Reinitialize((int)dimensions.x, (int)dimensions.y);
                     output.SetPixels32(newPixels);
 
                     byte[] fileBytes = null;
