@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Road
+  - NPC
   layers:
   - Default
   - TransparentFX
@@ -27,7 +29,7 @@ TagManager:
   - InternalUI
   - HardwareObjects
   - reserved4
-  - 
+  - PostEffect
   - 
   - 
   - 

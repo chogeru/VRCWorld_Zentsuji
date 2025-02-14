@@ -1,78 +1,180 @@
 fileFormatVersion: 2
 guid: e3e1ae9b4c619994f8d33fcf8aad028e
-timeCreated: 1624866208
-licenseType: Store
 ModelImporter:
-  serializedVersion: 19
-  fileIDToRecycleName:
-    100000: Airpump
-    100002: Aquarium
-    100004: BlindfoldCloth_02
-    100006: //RootNode
-    100008: Watersurface
-    100010: WoodenBox_01
-    100012: WoodenBox_02
-    100014: WoodenBox_03
-    100016: WoodenBox_04
-    100018: WoodenBox_05
-    400000: Airpump
-    400002: Aquarium
-    400004: BlindfoldCloth_02
-    400006: //RootNode
-    400008: Watersurface
-    400010: WoodenBox_01
-    400012: WoodenBox_02
-    400014: WoodenBox_03
-    400016: WoodenBox_04
-    400018: WoodenBox_05
-    2300000: Airpump
-    2300002: Aquarium
-    2300004: BlindfoldCloth_02
-    2300006: Watersurface
-    2300008: WoodenBox_01
-    2300010: WoodenBox_02
-    2300012: WoodenBox_03
-    2300014: WoodenBox_04
-    2300016: WoodenBox_05
-    3300000: Airpump
-    3300002: Aquarium
-    3300004: BlindfoldCloth_02
-    3300006: Watersurface
-    3300008: WoodenBox_01
-    3300010: WoodenBox_02
-    3300012: WoodenBox_03
-    3300014: WoodenBox_04
-    3300016: WoodenBox_05
-    4300000: Airpump
-    4300002: Aquarium
-    4300004: BlindfoldCloth_02
-    4300006: Watersurface
-    4300008: WoodenBox_01
-    4300010: WoodenBox_02
-    4300012: WoodenBox_03
-    4300014: WoodenBox_04
-    4300016: WoodenBox_05
-    9500000: //RootNode
+  serializedVersion: 22200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Airpump
+  - first:
+      1: 100002
+    second: Aquarium
+  - first:
+      1: 100004
+    second: BlindfoldCloth_02
+  - first:
+      1: 100006
+    second: //RootNode
+  - first:
+      1: 100008
+    second: Watersurface
+  - first:
+      1: 100010
+    second: WoodenBox_01
+  - first:
+      1: 100012
+    second: WoodenBox_02
+  - first:
+      1: 100014
+    second: WoodenBox_03
+  - first:
+      1: 100016
+    second: WoodenBox_04
+  - first:
+      1: 100018
+    second: WoodenBox_05
+  - first:
+      4: 400000
+    second: Airpump
+  - first:
+      4: 400002
+    second: Aquarium
+  - first:
+      4: 400004
+    second: BlindfoldCloth_02
+  - first:
+      4: 400006
+    second: //RootNode
+  - first:
+      4: 400008
+    second: Watersurface
+  - first:
+      4: 400010
+    second: WoodenBox_01
+  - first:
+      4: 400012
+    second: WoodenBox_02
+  - first:
+      4: 400014
+    second: WoodenBox_03
+  - first:
+      4: 400016
+    second: WoodenBox_04
+  - first:
+      4: 400018
+    second: WoodenBox_05
+  - first:
+      23: 2300000
+    second: Airpump
+  - first:
+      23: 2300002
+    second: Aquarium
+  - first:
+      23: 2300004
+    second: BlindfoldCloth_02
+  - first:
+      23: 2300006
+    second: Watersurface
+  - first:
+      23: 2300008
+    second: WoodenBox_01
+  - first:
+      23: 2300010
+    second: WoodenBox_02
+  - first:
+      23: 2300012
+    second: WoodenBox_03
+  - first:
+      23: 2300014
+    second: WoodenBox_04
+  - first:
+      23: 2300016
+    second: WoodenBox_05
+  - first:
+      33: 3300000
+    second: Airpump
+  - first:
+      33: 3300002
+    second: Aquarium
+  - first:
+      33: 3300004
+    second: BlindfoldCloth_02
+  - first:
+      33: 3300006
+    second: Watersurface
+  - first:
+      33: 3300008
+    second: WoodenBox_01
+  - first:
+      33: 3300010
+    second: WoodenBox_02
+  - first:
+      33: 3300012
+    second: WoodenBox_03
+  - first:
+      33: 3300014
+    second: WoodenBox_04
+  - first:
+      33: 3300016
+    second: WoodenBox_05
+  - first:
+      43: 4300000
+    second: Airpump
+  - first:
+      43: 4300002
+    second: Aquarium
+  - first:
+      43: 4300004
+    second: BlindfoldCloth_02
+  - first:
+      43: 4300006
+    second: Watersurface
+  - first:
+      43: 4300008
+    second: WoodenBox_01
+  - first:
+      43: 4300010
+    second: WoodenBox_02
+  - first:
+      43: 4300012
+    second: WoodenBox_03
+  - first:
+      43: 4300014
+    second: WoodenBox_04
+  - first:
+      43: 4300016
+    second: WoodenBox_05
+  - first:
+      95: 9500000
+    second: //RootNode
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    resampleRotations: 1
+    resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations: []
     isReadable: 1
   meshes:
@@ -80,25 +182,49 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    nodeNameCollisionStrategy: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 0
-  copyAvatar: 0
   humanDescription:
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -108,11 +234,19 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 0
   humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  importBlendShapeDeformPercent: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 
