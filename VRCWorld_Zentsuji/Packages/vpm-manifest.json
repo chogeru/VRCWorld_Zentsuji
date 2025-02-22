@@ -17,6 +17,18 @@
     },
     "jp.lilxyzw.liltoon": {
       "version": "1.8.5"
+    },
+    "vrchat.jordo.easyquestswitch": {
+      "version": "1.4.0"
+    },
+    "jp.lilxyzw.avatar-utils": {
+      "version": "2.0.0"
+    },
+    "jp.lilxyzw.lilycalinventory": {
+      "version": "1.4.5"
+    },
+    "jp.lilxyzw.editortoolbox": {
+      "version": "1.4.0"
     }
   },
   "locked": {
@@ -44,6 +56,22 @@
     },
     "jp.lilxyzw.liltoon": {
       "version": "1.8.5",
+      "dependencies": {}
+    },
+    "vrchat.jordo.easyquestswitch": {
+      "version": "1.4.0",
+      "dependencies": {}
+    },
+    "jp.lilxyzw.avatar-utils": {
+      "version": "2.0.0",
+      "dependencies": {}
+    },
+    "jp.lilxyzw.lilycalinventory": {
+      "version": "1.4.5",
+      "dependencies": {}
+    },
+    "jp.lilxyzw.editortoolbox": {
+      "version": "1.4.0",
       "dependencies": {}
     }
   }

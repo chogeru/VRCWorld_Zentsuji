@@ -4,21 +4,26 @@ using UnityEngine.AI;
 using VRC.SDKBase;
 using VRC.Udon;
 
+/// <summary>
+/// 巡回状態の列挙体
+/// </summary>
 public enum PatrolState
 {
     Moving,
     Rotating,
     Waiting
 }
+
+/// <summary>
+/// NPCの巡回処理を行うクラス
+/// </summary>
 public class NPCPatrol : UdonSharpBehaviour
 {
-
     [Header("巡回地点設定")]
-    [Tooltip("巡回地点の配列をここで設定してください。順番は巡回する順序になります。")]
+    [Tooltip("巡回地点の配列をここで設定してください。順番は巡回する順序になります")]
     public PatrolPoint[] patrolPoints;
 
     [Header("回転速度")]
-    [Tooltip("待機時の回転速度（待機地点で指定された回転角度にスムーズに合わせます）。")]
     public float rotationSpeed = 5f;
 
     [Header("Animator設定")]
@@ -27,12 +32,12 @@ public class NPCPatrol : UdonSharpBehaviour
     public NavMeshAgent agent;
     public Animator animator;
     private int currentIndex = 0;
-    private PatrolState currentState = PatrolState.Moving; // 外部定義した PatrolState を使用
+    private PatrolState currentState = PatrolState.Moving;
 
-    // 回転・待機用の内部変数
     private Quaternion targetRotation;
     private float waitTimer = 0f;
-    private const float rotationThreshold = 1f; // 回転終了判定用の角度誤差（度）
+    private const float rotationThreshold = 1f;
+
 
     void Start()
     {
@@ -41,13 +46,12 @@ public class NPCPatrol : UdonSharpBehaviour
 
         if (patrolPoints == null || patrolPoints.Length == 0)
         {
-            Debug.LogError("巡回地点が設定されていません : " + gameObject.name);
             return;
         }
 
-        // 最初の巡回地点を設定
         SetNextDestination();
     }
+
 
     void Update()
     {
@@ -63,13 +67,11 @@ public class NPCPatrol : UdonSharpBehaviour
                     PatrolPoint currentPoint = patrolPoints[currentIndex];
                     if (!currentPoint.isDoNotStop)
                     {
-                        // 待機地点の場合、指定された回転に向けて回転開始
                         targetRotation = Quaternion.Euler(currentPoint.waitRotation);
                         currentState = PatrolState.Rotating;
                     }
                     else
                     {
-                        // 待機せず、即次の地点へ進む
                         ProceedToNextWaypoint();
                     }
                 }
@@ -96,12 +98,20 @@ public class NPCPatrol : UdonSharpBehaviour
         }
     }
 
+    /// <summary>
+    /// 次の巡回地点へ移行する処理
+    /// 現在のインデックスを更新し、次の目的地を設定します。
+    /// </summary>
     private void ProceedToNextWaypoint()
     {
         currentIndex = (currentIndex + 1) % patrolPoints.Length;
         SetNextDestination();
     }
 
+    /// <summary>
+    /// 次の巡回地点を設定する処理
+    /// 巡回状態を移動状態に切り替え、歩行アニメーションを再生し、NavMeshAgentの目的地を更新
+    /// </summary>
     private void SetNextDestination()
     {
         currentState = PatrolState.Moving;
@@ -109,12 +119,20 @@ public class NPCPatrol : UdonSharpBehaviour
         agent.destination = patrolPoints[currentIndex].transform.position;
     }
 
+    /// <summary>
+    /// 歩行中のアニメーションを設定する処理
+    /// Animatorのパラメータをtrueに設定
+    /// </summary>
     private void SetWalkAnimation()
     {
         if (animator != null)
             animator.SetBool(walkParameterName, true);
     }
 
+    /// <summary>
+    /// 待機中のアニメーションを設定する処理
+    /// Animatorのパラメータをfalseに設定
+    /// </summary>
     private void SetIdleAnimation()
     {
         if (animator != null)
