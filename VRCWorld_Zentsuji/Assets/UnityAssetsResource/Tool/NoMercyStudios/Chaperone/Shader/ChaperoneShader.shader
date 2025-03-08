@@ -4,14 +4,15 @@ Shader "Custom/ChaperoneShader" {
         [HDR]_Color("Color Multiplier", Color) = (1,1,1,1)
         [HideInInspector]_MaskRadius("Mask Radius", Range(0,1000)) = 250
         [HideInInspector]_UseMask("Mask Amount", Range(0,1)) = 1
-        [HideInInspector]_MaskCentersCount("Mask Center Count", Range(0,10)) = 1
+        // マスク処理を使わない場合は 0 にしておく（マスク処理を有効にする場合は 1 以上に設定）
+        [HideInInspector]_MaskCentersCount("Mask Center Count", Range(0,10)) = 0
     }
     SubShader{
-        Tags {"Queue" = "Transparent" "IgnoreProjector" = "True" "RenderType" = "Transparent"}
+        Tags {"Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent"}
         LOD 100
         ZWrite Off
         Blend SrcAlpha OneMinusSrcAlpha
-        Cull Front
+        Cull Off
         Pass {
             CGPROGRAM
                 #pragma vertex vert
@@ -59,14 +60,24 @@ Shader "Custom/ChaperoneShader" {
                 fixed4 frag(v2f i) : SV_Target
                 {
                     UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
-                    float minDist = 2.0;
-                    for (int j = 0; j < _MaskCentersCount; j++)
+                    
+                    // マスク処理
+                    float mask = 1.0;
+                    if (_MaskCentersCount > 0)
                     {
-                        float dist = (distance(i.worldPos, _MaskCentersArray[j].xyz) / _MaskRadius);
-                        minDist = min(minDist, dist);
+                        float minDist = 1e10;
+                        for (int j = 0; j < _MaskCentersCount; j++)
+                        {
+                            // 距離を _MaskRadius で正規化
+                            float d = distance(i.worldPos, _MaskCentersArray[j].xyz) / _MaskRadius;
+                            minDist = min(minDist, d);
+                        }
+                        // minDist が 0 のとき mask=1、1 のとき mask=0 となるように補間
+                        mask = 1.0 - smoothstep(0.0, 1.0, minDist);
                     }
-                    float mask = smoothstep(1.0, 0.0, minDist);
+                    
                     fixed4 col = tex2D(_MainTex, i.texcoord) * _Color;
+                    // _UseMask が 0 の場合はマスク効果を無効化
                     col.a *= lerp(1.0, mask, _UseMask);
                     UNITY_APPLY_FOG(i.fogCoord, col);
                     return col;
