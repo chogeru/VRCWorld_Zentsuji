@@ -472,7 +472,7 @@ MonoBehaviour:
       m_Left: 3
       m_Right: 3
       m_Top: 2
-      m_Bottom: 3
+      m_Bottom: 1
     m_Overflow:
       m_Left: 0
       m_Right: 0

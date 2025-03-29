@@ -86,19 +86,52 @@ MonoBehaviour:
       Data: 4|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 3
     - Name: 
       Entry: 7
-      Data: 5|UnityEngine.HeaderAttribute, UnityEngine.CoreModule
-    - Name: header
+      Data: 5|Sirenix.OdinInspector.FoldoutGroupAttribute, Sirenix.OdinInspector.Attributes
+    - Name: GroupID
       Entry: 1
-      Data: "\u5F85\u6A5F\u6642\u9593"
+      Data: "\u5F85\u6A5F\u8A2D\u5B9A"
+    - Name: GroupName
+      Entry: 1
+      Data: "\u5F85\u6A5F\u8A2D\u5B9A"
+    - Name: Order
+      Entry: 4
+      Data: 0
+    - Name: HideWhenChildrenAreInvisible
+      Entry: 5
+      Data: true
+    - Name: VisibleIf
+      Entry: 6
+      Data: 
+    - Name: AnimateVisibility
+      Entry: 5
+      Data: true
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 7
-      Data: 6|UnityEngine.TooltipAttribute, UnityEngine.CoreModule
+      Data: 6|Sirenix.OdinInspector.LabelTextAttribute, Sirenix.OdinInspector.Attributes
+    - Name: Text
+      Entry: 1
+      Data: "\u5F85\u6A5F\u6642\u9593 (\u79D2)"
+    - Name: NicifyText
+      Entry: 5
+      Data: false
+    - Name: Icon
+      Entry: 3
+      Data: 0
+    - Name: IconColor
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 7|UnityEngine.TooltipAttribute, UnityEngine.CoreModule
     - Name: tooltip
       Entry: 1
       Data: "\u3053\u306E\u5730\u70B9\u3067\u306E\u5F85\u6A5F\u6642\u9593"
@@ -125,13 +158,13 @@ MonoBehaviour:
       Data: waitRotation
     - Name: $v
       Entry: 7
-      Data: 7|UdonSharp.Compiler.FieldDefinition, UdonSharp.Editor
+      Data: 8|UdonSharp.Compiler.FieldDefinition, UdonSharp.Editor
     - Name: <Name>k__BackingField
       Entry: 1
       Data: waitRotation
     - Name: <UserType>k__BackingField
       Entry: 7
-      Data: 8|System.RuntimeType, mscorlib
+      Data: 9|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
       Data: UnityEngine.Vector3, UnityEngine.CoreModule
@@ -140,7 +173,7 @@ MonoBehaviour:
       Data: 
     - Name: <SystemType>k__BackingField
       Entry: 9
-      Data: 8
+      Data: 9
     - Name: <SyncMode>k__BackingField
       Entry: 7
       Data: System.Nullable`1[[UdonSharp.UdonSyncMode, UdonSharp.Runtime]], mscorlib
@@ -155,22 +188,55 @@ MonoBehaviour:
       Data: true
     - Name: _fieldAttributes
       Entry: 7
-      Data: 9|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+      Data: 10|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 3
     - Name: 
       Entry: 7
-      Data: 10|UnityEngine.HeaderAttribute, UnityEngine.CoreModule
-    - Name: header
+      Data: 11|Sirenix.OdinInspector.FoldoutGroupAttribute, Sirenix.OdinInspector.Attributes
+    - Name: GroupID
       Entry: 1
-      Data: "\u5F85\u6A5F\u6642\u56DE\u8EE2\u65B9\u5411 (Euler\u89D2)"
+      Data: "\u5F85\u6A5F\u8A2D\u5B9A"
+    - Name: GroupName
+      Entry: 1
+      Data: "\u5F85\u6A5F\u8A2D\u5B9A"
+    - Name: Order
+      Entry: 4
+      Data: 0
+    - Name: HideWhenChildrenAreInvisible
+      Entry: 5
+      Data: true
+    - Name: VisibleIf
+      Entry: 6
+      Data: 
+    - Name: AnimateVisibility
+      Entry: 5
+      Data: true
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 7
-      Data: 11|UnityEngine.TooltipAttribute, UnityEngine.CoreModule
+      Data: 12|Sirenix.OdinInspector.LabelTextAttribute, Sirenix.OdinInspector.Attributes
+    - Name: Text
+      Entry: 1
+      Data: "\u5F85\u6A5F\u6642\u56DE\u8EE2\u65B9\u5411 (Euler\u89D2)"
+    - Name: NicifyText
+      Entry: 5
+      Data: false
+    - Name: Icon
+      Entry: 3
+      Data: 0
+    - Name: IconColor
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 13|UnityEngine.TooltipAttribute, UnityEngine.CoreModule
     - Name: tooltip
       Entry: 1
       Data: "\u5F85\u6A5F\u4E2D\u306B\u5411\u304F\u65B9\u5411"
@@ -197,13 +263,13 @@ MonoBehaviour:
       Data: isDoNotStop
     - Name: $v
       Entry: 7
-      Data: 12|UdonSharp.Compiler.FieldDefinition, UdonSharp.Editor
+      Data: 14|UdonSharp.Compiler.FieldDefinition, UdonSharp.Editor
     - Name: <Name>k__BackingField
       Entry: 1
       Data: isDoNotStop
     - Name: <UserType>k__BackingField
       Entry: 7
-      Data: 13|System.RuntimeType, mscorlib
+      Data: 15|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
       Data: System.Boolean, mscorlib
@@ -212,7 +278,7 @@ MonoBehaviour:
       Data: 
     - Name: <SystemType>k__BackingField
       Entry: 9
-      Data: 13
+      Data: 15
     - Name: <SyncMode>k__BackingField
       Entry: 7
       Data: System.Nullable`1[[UdonSharp.UdonSyncMode, UdonSharp.Runtime]], mscorlib
@@ -227,22 +293,55 @@ MonoBehaviour:
       Data: true
     - Name: _fieldAttributes
       Entry: 7
-      Data: 14|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
+      Data: 16|System.Collections.Generic.List`1[[System.Attribute, mscorlib]], mscorlib
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 3
     - Name: 
       Entry: 7
-      Data: 15|UnityEngine.HeaderAttribute, UnityEngine.CoreModule
-    - Name: header
+      Data: 17|Sirenix.OdinInspector.FoldoutGroupAttribute, Sirenix.OdinInspector.Attributes
+    - Name: GroupID
       Entry: 1
-      Data: "\u5F85\u6A5F\u3057\u306A\u3044\u5834\u5408\u306F\u30C1\u30A7\u30C3\u30AF"
+      Data: "\u30AA\u30D7\u30B7\u30E7\u30F3"
+    - Name: GroupName
+      Entry: 1
+      Data: "\u30AA\u30D7\u30B7\u30E7\u30F3"
+    - Name: Order
+      Entry: 4
+      Data: 0
+    - Name: HideWhenChildrenAreInvisible
+      Entry: 5
+      Data: true
+    - Name: VisibleIf
+      Entry: 6
+      Data: 
+    - Name: AnimateVisibility
+      Entry: 5
+      Data: true
     - Name: 
       Entry: 8
       Data: 
     - Name: 
       Entry: 7
-      Data: 16|UnityEngine.TooltipAttribute, UnityEngine.CoreModule
+      Data: 18|Sirenix.OdinInspector.LabelTextAttribute, Sirenix.OdinInspector.Attributes
+    - Name: Text
+      Entry: 1
+      Data: "\u5F85\u6A5F\u3057\u306A\u3044"
+    - Name: NicifyText
+      Entry: 5
+      Data: false
+    - Name: Icon
+      Entry: 3
+      Data: 0
+    - Name: IconColor
+      Entry: 6
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 19|UnityEngine.TooltipAttribute, UnityEngine.CoreModule
     - Name: tooltip
       Entry: 1
       Data: "\u30C1\u30A7\u30C3\u30AF\u3059\u308B\u3068\u3001\u3053\u306E\u5730\u70B9\u5230\u7740\u5F8C\u306F\u5F85\u6A5F\u30FB\u56DE\u8EE2\u3092\u884C\u308F\u305A\u3001\u5373\u6B21\u306E\u5730\u70B9\u3078\u79FB\u52D5\u3092\u884C\u3046"
