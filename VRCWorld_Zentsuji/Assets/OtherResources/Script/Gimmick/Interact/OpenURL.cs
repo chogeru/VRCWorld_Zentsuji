@@ -32,4 +32,24 @@ public class OpenURL : UdonSharpBehaviour
         inputFieldObject.SetActive(newState);
         imageObject.SetActive(newState);
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, 0.3f);
+
+        if (inputFieldObject != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(transform.position, inputFieldObject.transform.position);
+            Gizmos.DrawWireCube(inputFieldObject.transform.position, Vector3.one);
+        }
+
+        if (imageObject != null)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawLine(transform.position, imageObject.transform.position);
+            Gizmos.DrawWireCube(imageObject.transform.position, Vector3.one);
+        }
+    }
 }
